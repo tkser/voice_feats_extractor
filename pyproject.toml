@@ -33,6 +33,7 @@ target-version = "py310"
 line-length = 120
 ignore = [
     "G004",
+    "N812",
     "RUF001",
     "RUF002",
     "RUF003",
@@ -43,8 +44,10 @@ ignore = [
     "ANN003",
     "INP001",
     "PLR0913",
+    "PLR2004",
     "NPY002",
     "SIM105",
+    "NPY002",
     "S110",
     "D"
 ]
@@ -60,6 +63,13 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+[tool.ruff.lint.pylint]
+max-returns = 15
+max-statements = 100
 
 
 [build-system]

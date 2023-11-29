@@ -6,15 +6,14 @@ import numpy as np
 
 from voice_feats_extractor.constants import ACCENT_SYMBOL_LIST, MORA_PHONEME_LIST, PHONEME_LIST
 
+
 class Label:
     def __init__(
         self,
-        idx: int,
         start_times: list[float],
         end_times: list[float],
         contexts: list[str],
     ) -> None:
-        self.idx = idx
         self.start_times = start_times
         self.end_times = end_times
         self.contexts = contexts
@@ -27,14 +26,13 @@ class Label:
         return len(self.contexts)
 
     def __str__(self) -> str:
-        return f"<Label idx={self.idx} len={len(self)}>"
+        return f"<Label idx={self.__hash__()} len={len(self)}>"
 
     @staticmethod
     def load_from_path(lab_path: Path, sec_unit: float = 1.0) -> "Label":
         start_times = []
         end_times = []
         contexts = []
-        idx = int(re.search(r"\d+", lab_path.stem).group())
 
         with Path.open(lab_path, "r") as f:
             for line in f:
@@ -43,7 +41,7 @@ class Label:
                 start_times.append(float(start) / sec_unit)
                 end_times.append(float(end) / sec_unit)
 
-        return Label(idx, start_times, end_times, contexts)
+        return Label(start_times, end_times, contexts)
 
     def get_alignments(self, sampling_rate: int, hop_length: int) -> tuple[list[int], list[int], float, float]:
         phonemes = []
