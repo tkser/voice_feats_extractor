@@ -90,6 +90,7 @@ def extractor(cfg: Config) -> None:
         wave = wave.clip(start_time=start_time, end_time=end_time)
 
         pitch = wave.get_pitch(hop_length=cfg.stft.hop_length, durations=durations)
+        log_pitch = np.log(pitch)
 
         mel = wave.get_mel(stft=stft, durations=durations)
 
@@ -103,7 +104,7 @@ def extractor(cfg: Config) -> None:
         accent_file = output_dirs["accent"] / f"{wav_id}.npy"
 
         np.save(duration_file, durations)
-        np.save(pitch_file, pitch)
+        np.save(pitch_file, log_pitch)
         np.save(mel_file, mel.T)
         np.save(accent_file, accents)
 
