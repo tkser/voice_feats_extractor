@@ -83,6 +83,7 @@ class Wave:
     def get_mel(self, stft: TacotronSTFT, durations: list[int]) -> np.ndarray:
         mel = self._get_mel_from_stft(stft)
         mel = mel[:, : sum(durations)]
+        return mel
 
     def _get_mel_from_stft(self, stft: TacotronSTFT) -> np.ndarray:
         wav = torch.from_numpy(self.wave).unsqueeze(0)

@@ -107,6 +107,7 @@ def extractor(cfg: Config) -> None:
 
     logging.info(f"Number of frames: {n_frames}")
     logging.info(f"Total time: {n_frames * cfg.stft.hop_length / cfg.wave.sampling_rate / 3600:.2f} hours")
+    logging.info(f"Output directory: {output_dir}")
     logging.info("Finish extracting features")
 
 

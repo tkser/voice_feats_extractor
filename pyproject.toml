@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "voice-feats-extractor"
+name = "voice_feats_extractor"
 version = "0.1.0"
 description = ""
 authors = ["tkser <tkser.edu@gmail.com>"]
