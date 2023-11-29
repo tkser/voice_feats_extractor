@@ -1,4 +1,5 @@
 import logging
+import warnings
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from voice_feats_extractor.label import Label
 from voice_feats_extractor.modules.tacotron2.layers import TacotronSTFT
 from voice_feats_extractor.wave import Wave
 
+warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 
 
@@ -45,8 +47,8 @@ def extractor(cfg: Config) -> None:
         "accent": output_dir / "accent",
     }
 
-    for output_dir in output_dirs.values():
-        output_dir.mkdir(exist_ok=True)
+    for _output_dir in output_dirs.values():
+        _output_dir.mkdir(exist_ok=True)
 
     n_frames = 0
 
